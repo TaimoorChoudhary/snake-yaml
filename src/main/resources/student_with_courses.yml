@@ -1,0 +1,12 @@
+id: 20
+name: Bruce
+address: Gotham City
+year: 2020
+department: Computer Science
+courses:
+  - name: Algorithms
+    credits: 6
+  - name: Data Structure
+    credits: 5
+  - name: Design patters
+    credits: 3
