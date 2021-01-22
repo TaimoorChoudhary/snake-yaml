@@ -15,12 +15,13 @@ import java.util.Map;
 public class Reader {
 
     public void ReadYaml(){
-        Yaml yaml = new Yaml();
+
         InputStream inputStream = this.getClass()
                 .getClassLoader()
                 .getResourceAsStream("student.yml");
-        Map<String, Object> obj = yaml.load(inputStream);
-        System.out.println(obj);
+        Yaml yaml = new Yaml();
+        Map<String, Object> data = yaml.load(inputStream);
+        System.out.println(data);
     }
 
     public void readYamlWithCollection(){
@@ -28,8 +29,8 @@ public class Reader {
         InputStream inputStream = this.getClass()
                 .getClassLoader()
                 .getResourceAsStream("student_with_courses.yml");
-        Map<String, Object> obj = yaml.load(inputStream);
-        System.out.println(obj);
+        Map<String, Object> data = yaml.load(inputStream);
+        System.out.println(data);
     }
 
     public void ReadYamlAsBean(){
@@ -37,16 +38,16 @@ public class Reader {
         InputStream inputStream = this.getClass()
                 .getClassLoader()
                 .getResourceAsStream("student.yml");
-        Student obj = yaml.load(inputStream);
-        System.out.println(obj);
+        Student data = yaml.load(inputStream);
+        System.out.println(data);
     }
 
     public void ReadYamlAsBeanWithNestedClass(){
-        Yaml yaml = new Yaml(new Constructor(Student.class));
         InputStream inputStream = this.getClass()
                 .getClassLoader()
                 .getResourceAsStream("student_with_courses.yml");
-        Student obj = yaml.load(inputStream);
-        System.out.println(obj);
+        Yaml yaml = new Yaml(new Constructor(Student.class));
+        Student data = yaml.load(inputStream);
+        System.out.println(data);
     }
 }

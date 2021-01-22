@@ -1,6 +1,8 @@
 import model.Writer;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
@@ -57,7 +59,11 @@ public class Main {
     }
 
     private static void writeYaml(){
-        writer.WriteYaml();
+        try {
+            writer.WriteYaml();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void writeYamlBasic(){
@@ -65,6 +71,10 @@ public class Main {
     }
 
     private static void writeYamlCollection(){
-        writer.WriteYamlBasicWithCollection();
+        try {
+            writer.WriteYamlBasicWithCollection();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

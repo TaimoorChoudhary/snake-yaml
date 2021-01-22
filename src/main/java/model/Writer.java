@@ -1,7 +1,13 @@
 package model;
 
+import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,30 +20,46 @@ import java.util.Objects;
  */
 public class Writer {
 
-    public void WriteYaml(){
+    public void WriteYaml() throws IOException {
         Map<String, Object> dataMap = new HashMap<>();
         dataMap.put("id", 19);
         dataMap.put("name", "John");
         dataMap.put("address", "Star City");
-        dataMap.put("year", 2019);
         dataMap.put("department", "Medical");
 
-        Yaml yaml = new Yaml();
-        StringWriter writer = new StringWriter();
+        DumperOptions options = new DumperOptions();
+        options.setIndent(2);
+        options.setPrettyFlow(true);
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        Yaml yaml = new Yaml(options);
+        PrintWriter writer = new PrintWriter(new File("./src/main/resources/student_output.yml"));
+//        StringWriter writer = new StringWriter();
         yaml.dump(dataMap, writer);
-        System.out.println(writer.toString());
     }
 
     public void WriteYamlBasic(){
-        Yaml yaml = new Yaml();
+
+        DumperOptions options = new DumperOptions();
+        options.setIndent(2);
+        options.setPrettyFlow(true);
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        Yaml yaml = new Yaml(options);
+
         StringWriter writer = new StringWriter();
         yaml.dump(basicStudentObject(), writer);
         System.out.println(writer.toString());
     }
 
-    public void WriteYamlBasicWithCollection(){
-        Yaml yaml = new Yaml();
-        StringWriter writer = new StringWriter();
+    public void WriteYamlBasicWithCollection() throws FileNotFoundException {
+
+        DumperOptions options = new DumperOptions();
+        options.setIndent(2);
+        options.setPrettyFlow(true);
+        options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+        Yaml yaml = new Yaml(options);
+
+//        StringWriter writer = new StringWriter();
+        PrintWriter writer = new PrintWriter(new File("./src/main/resources/student_output_bean.yml"));
         yaml.dump(studentObject(), writer);
         System.out.println(writer.toString());
     }
